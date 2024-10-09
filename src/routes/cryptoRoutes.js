@@ -1,8 +1,8 @@
-const express = require('express');
-const { getStats } = require('../controller/cryptoController.js');
+import { Router } from 'express';
+import { getStats } from '../controller/cryptoController.js';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/stats', getStats);
 
-module.exports = router;
+export default router;

@@ -1,13 +1,13 @@
-const { getLatestCryptoData } = require('../services/cryptoService.js');
+import {getLatestCryptoData} from '../services/cryptoService.js';
 
-const getStats = async (req, res) => {
+export const getStats = async (req, res) => {
   const { coin } = req.query;
-
   if (!coin) {
     return res.status(400).json({ error: 'Coin parameter is required' });
   }
 
   const validCoins = ['bitcoin', 'matic-network', 'ethereum'];
+
   if (!validCoins.includes(coin)) {
     return res.status(400).json({ error: 'Invalid coin. Must be one of: bitcoin, matic-network, ethereum' });
   }
@@ -24,10 +24,10 @@ const getStats = async (req, res) => {
       marketCap: coinData.market_cap_usd,
       "24hChange": coinData.price_change_24h
     });
+
   } catch (error) {
     console.error('Error fetching coin data:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
 
-module.exports = { getStats };

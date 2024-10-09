@@ -1,7 +1,7 @@
-const { getLastNPrices } = require('../services/cryptoService.js');
-const { calculateStandardDeviation } = require('../utils/mathUtils.js');
+import { getLastNPrices } from '../services/cryptoService.js';
+import { calculateStandardDeviation}  from '../utils/mathUtils.js';
 
-const getDeviation = async (req, res) => {
+export const getDeviation = async (req, res) => {
   const { coin } = req.query;
 
   if (!coin) {
@@ -31,4 +31,3 @@ const getDeviation = async (req, res) => {
   }
 };
 
-module.exports = { getDeviation };

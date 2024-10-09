@@ -1,13 +1,14 @@
-const Crypto = require('../model/Crypto.js');
-const { fetchCryptoData } = require('./coinGeckoService.js');
+import db from '../model/Crypto.js';
+import { fetchCryptoData } from './coinGeckoService.js';
 
-const updateDatabase = async () => {
+export const updateDatabase = async () => {
   const data = await fetchCryptoData();
+  console.log(data);
   if (!data) return;
 
   for (const coin of data) {
     try {
-      await Crypto.findOneAndUpdate(
+      await db.findOneAndUpdate(
         { id: coin.id },
         {
           name: coin.name,
@@ -25,16 +26,16 @@ const updateDatabase = async () => {
   }
 };
 
-const getLatestCryptoData = async (coinId) => {
-  return await Crypto.findOne({ id: coinId });
+export const getLatestCryptoData = async (coinId) => {
+  return await db.findOne({ id: coinId });
 };
 
-const getLastNPrices = async (coinId, n) => {
-  const data = await Crypto.find({ id: coinId })
+export const getLastNPrices = async (coinId, n) => {
+  const data = await db.find({ id: coinId })
     .sort({ last_updated: -1 })
     .limit(n)
     .select('price_usd');
   return data.map(record => record.price_usd);
 };
 
-module.exports = { updateDatabase, getLatestCryptoData, getLastNPrices };
+export default { updateDatabase, getLatestCryptoData, getLastNPrices };

@@ -1,4 +1,4 @@
-const calculateStandardDeviation = (prices) => {
+export const calculateStandardDeviation = (prices) => {
     const n = prices.length;
     const mean = prices.reduce((sum, price) => sum + price, 0) / n;
     const squaredDifferences = prices.map(price => Math.pow(price - mean, 2));
@@ -6,4 +6,4 @@ const calculateStandardDeviation = (prices) => {
     return Math.sqrt(variance);
   };
   
-  module.exports = { calculateStandardDeviation };
+ 

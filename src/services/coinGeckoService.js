@@ -1,21 +1,24 @@
-const axios = require('axios');
-const { COINGECKO_API_URL } = require('../config/environment.js');
+import axios from 'axios';
+import { COINGECKO_API_URL } from '../config/environment.js';
 
-const fetchCryptoData = async () => {
+export const fetchCryptoData = async () => {
   const coins = ['bitcoin', 'matic-network', 'ethereum'];
   const url = `${COINGECKO_API_URL}/coins/markets`;
   
   try {
     const response = await axios.get(url, {
       params: {
-        vs_currency: 'usd',
+        vs_currency: "usd",
         ids: coins.join(','),
         order: 'market_cap_desc',
         per_page: 3,
         page: 1,
         sparkline: false
-      }
+      },
+      headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-Jh1CKeTFBs2pWoJvEM5W89yd'}
     });
+    console.log(response.data);
+    
     return response.data;
   } catch (error) {
     console.error('Error fetching data from CoinGecko:', error);
@@ -23,4 +26,4 @@ const fetchCryptoData = async () => {
   }
 };
 
-module.exports = { fetchCryptoData };
+export default { fetchCryptoData };

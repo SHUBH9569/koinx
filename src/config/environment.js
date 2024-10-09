@@ -1,7 +1,6 @@
-require('dotenv').config();
+import {config} from 'dotenv';
+config();
 
-module.exports = {
-  PORT: process.env.PORT || 3000,
-  MONGODB_URI: process.env.MONGODB_URI,
-  COINGECKO_API_URL: 'https://api.coingecko.com/api/v3',
-};
+export const PORT = process.env.PORT || 3000;
+export const MONGODB_URI = process.env.MONGODB_URI;
+export const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3';

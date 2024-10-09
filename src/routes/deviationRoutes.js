@@ -1,8 +1,8 @@
-const express = require('express');
-const { getDeviation } = require('../controller/deviationController.js');
+import { Router } from 'express';
+import { getDeviation } from '../controller/deviationController.js';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/deviation', getDeviation);
 
-module.exports = router;
+export default router;
