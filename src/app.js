@@ -21,9 +21,11 @@ schedule('* */2 * * *', async () => {
 app.use(cryptoRoutes);
 app.use(deviationRoutes);
 
+app.get('/', (req, res) => {
+  res.json({'message': 'running fine'});
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-
