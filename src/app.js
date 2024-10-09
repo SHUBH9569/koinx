@@ -12,7 +12,7 @@ const app = express();
 connectDatabase();
 
 // Schedule job to run every 2 hours
-schedule('*/1 * * * *', async () => {
+schedule('* */2 * * *', async () => {
   console.log('Running scheduled job to fetch crypto data');
   await updateDatabase();
 });

@@ -15,7 +15,7 @@ export const fetchCryptoData = async () => {
         page: 1,
         sparkline: false
       },
-      headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-Jh1CKeTFBs2pWoJvEM5W89yd'}
+      headers: {accept: 'application/json', 'x-cg-demo-api-key': process.env.API_KEY}
     });
     console.log(response.data);
     
