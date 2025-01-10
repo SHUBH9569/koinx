@@ -15,7 +15,7 @@ export const getDeviation = async (req, res) => {
 
   try {
     const prices = await getLastNPrices(coin, 100);
-
+    console.log('Prices:', prices);
     if (prices.length === 0) {
       return res.status(404).json({ error: 'No data found for the specified coin' });
     }
